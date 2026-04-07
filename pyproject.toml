@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "clinical-trial-env"
+version = "1.0.0"
+description = "OpenEnv environment for Clinical Trial Protocol Review"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.115.0",
+    "uvicorn[standard]==0.30.6",
+    "pydantic==2.9.2",
+    "openai>=1.40.0",
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "httpx"]
+
+[tool.openenv]
+name = "clinical-trial-env"
+version = "1.0.0"
+entrypoint = "server/app.py"
+tasks = ["eligibility_screening", "ae_classification", "protocol_amendment_review"]
